@@ -9,10 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -20,7 +16,7 @@ public class NewTest {
 
 	@BeforeSuite
 	public void beforeSuite() {
-		WDService ws = new WDService(2, WDService.CHROME, new PreStep() {
+		new WDService(WDService.CHROME, new PreStep() {
 
 			public void initDriver(WebDriver wd) {
 				wd.get("http://www.google.co.in");
@@ -74,11 +70,6 @@ public class NewTest {
 		WebElement wE = wd.findElement(By.name("q"));
 		wE.clear();
 		wE.sendKeys("Bhutan" + Keys.ENTER);
-	}
-
-	@AfterMethod
-	public void afterMethod(ITestResult result) {
-		WDService.releaseDriver(result.getName());
 	}
 
 	@AfterSuite
